@@ -1,0 +1,222 @@
+:root {
+    --border-color: #1f1f1f;
+}
+.navbar {
+    background-color: black;
+    min-height: 6rem !important;
+}
+
+@media only screen and (max-width: 700px) {
+    .web-player {
+        min-width: 100%;
+        max-height: 72px;
+    }
+    
+}
+
+.dropdown {
+    margin-left: 0;
+}
+
+.card {
+    margin-top: 2rem !important;
+    border: 2px solid black;
+    border-radius: 2rem;
+    width: 15vw;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.card-body a{
+    display:block;
+}
+.container {
+    overflow: hidden;
+}
+
+.card.tracklist {
+    width: 25vw;
+    padding: 1rem 1rem 1rem 1rem;
+    margin-right: 5rem;
+    margin-left: 1rem;
+}
+
+.card.tracklist.t-sidebar {
+    margin: 1rem 1rem 0rem 1rem;
+    width: 5rem !important;
+}
+
+.mt-5 {
+    padding-top: 4rem;
+}
+
+p#fade5 {
+    margin-left: 2.8em;
+}
+
+p.welcome-text{
+    word-wrap: break-word;
+    max-width: 90vw;
+    margin-left: 2em;
+    text-indent: 2em;
+    line-height: 1.5rem;
+}
+
+a.dropdown-toggle {
+    padding-left: 0;
+    color: var(--border-color);
+    color: #fff;
+    display: inline-block;
+}
+hr {
+    color: var(--border-color)
+}
+
+
+a.dropdown-toggle:hover {
+    text-shadow: 0 0 15px var(--border-color);
+    color: #fff !important;
+}
+
+a.dropdown-toggle::before{
+    content: '|';
+    margin-right: 1rem; 
+    margin-left: 0;
+    color: var(--border-color);
+    text-shadow: none !important;
+}
+
+a.dropdown-toggle::after:hover{
+    color: var(--border-color);
+}
+
+.web-player {
+    display: flex;
+    max-height: 72px;
+    padding: 0.15rem;
+    padding-left: 0.2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.3rem;
+    background-color: #020202;
+}
+
+.current-text {
+    overflow: hidden;
+    display: inline-flex;
+    min-width: 100px;
+    max-width: 250px;
+    flex-direction: column;
+    white-space: nowrap;
+    padding: 0 5px 5px;
+    padding-left: 5px;
+    padding-right: 1px;
+    justify-content: center;
+}
+
+
+.web-player:hover {
+    background-color: #009931;
+    cursor: pointer;
+
+}
+
+.current-album img {
+    width: 56px;
+    height: 56px;
+    border: 5px;
+    border-color: var(--border-color);
+    border-radius: 0.3rem;
+}
+
+p.track-name {
+    display: block;
+    color: #fff;
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+    text-decoration: none;   
+    text-overflow: ellipsis;
+    padding: 0 0 0 5px;
+}
+ 
+a.track-artist {
+    color: #fff ;
+    font-size: 0.8rem;
+    padding: 0 0 0 5px;
+    margin-top: 0.1rem;
+    line-height: 0.6rem;
+    text-decoration: none;    
+
+}
+
+body {
+    color: #000;
+}
+
+#fade2 {
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 2s; /* Firefox < 16 */
+        -ms-animation: fadein 2s; /* Internet Explorer */
+         -o-animation: fadein 2s; /* Opera < 12.1 */
+            animation: fadein 2s;
+}
+
+#fade5 {
+    -webkit-animation: fadein 5s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 5s; /* Firefox < 16 */
+        -ms-animation: fadein 5s; /* Internet Explorer */
+         -o-animation: fadein 5s; /* Opera < 12.1 */
+            animation: fadein 5s;
+}
+
+#display2s {
+    -webkit-animation: effect 5s;
+            animation: effect 5s
+}
+
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes effect {
+    0% {
+        color: white;
+        -webkit-background-clip: text;
+    }
+
+    60% {
+        color: white;
+        -webkit-background-clip: text;
+    }
+
+    100% {
+        color: black;
+        -webkit-background-clip: text;
+    }
+}
