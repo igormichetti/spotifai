@@ -1,67 +1,26 @@
 {% extends "base.html" %}
-{% block content %} 
-<div class="container">
-  <div class="row">
-    <div class="col-7">
-      <div class="container-fluid">
-        <div class="card tracklist">
-          <ol class="list-group list-group-numbered">
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-              <div class="ms-2 me-auto">
-                <div class="fw-bold">Subheading</div>
-                Content for list item
-              </div>
-              <span class="badge bg-primary rounded-pill">14</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-              <div class="ms-2 me-auto">
-                <div class="fw-bold">Subheading</div>
-                Content for list item
-              </div>
-              <span class="badge bg-primary rounded-pill">14</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-              <div class="ms-2 me-auto">
-                <div class="fw-bold">Subheading</div>
-                Content for list item
-              </div>
-              <span class="badge bg-primary rounded-pill">14</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-              <div class="ms-2 me-auto">
-                <div class="fw-bold">Subheading</div>
-                Content for list item
-              </div>
-              <span class="badge bg-primary rounded-pill">14</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-              <div class="ms-2 me-auto">
-                <div class="fw-bold">Subheading</div>
-                Content for list item
-              </div>
-              <span class="badge bg-primary rounded-pill">14</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-              <div class="ms-2 me-auto">
-                <div class="fw-bold">Subheading</div>
-                Content for list item
-              </div>
-              <span class="badge bg-primary rounded-pill">14</span>
-            </li>
-          </ol>
-        </div>
-      </div>
+{% block content %}
+<div class="container-fluid">
+  <div class="tracklist">
+    <div class="card-header">
+       <h3>Your Monthly Top Tracks</h3>
     </div>
-    <div class="col">
-      <div class="card me-auto">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="/user_top_tracks" class="btn btn-primary">Go somewhere</a>
-          </div>
-      </div>
+    <div class="card-body">
+      <ol class="list-group list-group-numbered">
+        {% for name, artist in tracks_info %}
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">{{ name }}</div>
+                {{ artist }}
+            </div>
+            <div class="play-button">
+              <a href="#" class="btn btn-primary">Play</a>
+            </div>
+          </li>
+        {% endfor %}
+        <a href="/create_user_top_tracks_playlist" class="btn btn-primary" id="add-playlist">Add to Spotify</a>
+      </ol>
     </div>
   </div>
-</div>
-
+</div> 
 {% endblock %}

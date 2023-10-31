@@ -115,7 +115,7 @@ def sign_out():
     session.pop("display_name")
     return redirect('/')
 
-@app.route('/user_top_tracks/')
+@app.route('/tools/')
 def user_top_tracks():
     auth_manager, cache_handler = get_auth_manager()
 
@@ -125,7 +125,13 @@ def user_top_tracks():
 
     sp = Spotify(auth_manager=auth_manager)
     tracks = sp.current_user_top_tracks(limit=20, time_range='short_term')
-    user_id = sp.me()['id']
+    tracks_info= [(track['name'], track['artists'][0]['name']) for track in tracks['items']]
+    
+    display_name = session.get('display_name', None)
+
+
+
+    return render_template('tools.html', tracks_info=tracks_info, display_name=display_name)
 
 @app.route('/create_user_top_tracks_playlist/')
 def create_monthly_playlist():
@@ -150,7 +156,7 @@ def create_monthly_playlist():
     # Add the tracks to the new playlist.
     track_ids = [track['id'] for track in tracks['items']]
     sp.playlist_add_items(playlist["id"], track_ids)
-    return redirect(url_for(user_top_tracks, _external=True))
+    return redirect('/tools')
 
 @app.route('/playlists/')
 def playlists():
@@ -178,11 +184,6 @@ def currently_playing():
     else:
         return ""
 
-@app.route('/tools/')
-def show_tools():
-    display_name = session.get('display_name')
-    return render_template('tools.html', display_name=display_name)
-
 @app.route('/current_user/')
 def current_user():
     cache_handler = FlaskSessionCacheHandler(session)
@@ -193,4 +194,4 @@ def current_user():
     return sp.me()
 
 if __name__ == "__main__":
-    app.run(debug=True, threaded=True)
+    app.run(debug=True)
