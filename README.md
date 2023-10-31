@@ -1,0 +1,1 @@
+Spotifai is a project for a web application that provides user information and tools for interacting with Spotify.
