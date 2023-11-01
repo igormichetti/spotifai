@@ -81,9 +81,13 @@ def index():
         auth_url = auth_manager.get_authorize_url()
         return f'<h2><a href="{auth_url}">Sign in</a></h2>'
     
-    display_name = session.get('display_name', None)
+    sp = Spotify(auth_manager=auth_manager)
 
-    return render_template('home.html', display_name=display_name)
+    display_name = session.get('display_name', None)
+    profile_image = sp.me()['images'][0]["url"]
+
+
+    return render_template('home.html', display_name=display_name, profile_image=profile_image)
 
 @app.route('/callback')
 def callback():
@@ -96,6 +100,7 @@ def callback():
         spotify = Spotify(auth_manager=auth_manager)
         user_id = spotify.me()['id']
         session['display_name'] = spotify.me()['display_name']
+        session['profile_image'] = spotify.me()['images'][0]['url']
         
         user = User.query.filter_by(user_id=user_id).first()
         if user:

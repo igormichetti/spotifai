@@ -6,7 +6,13 @@
     min-height: 6rem !important;
 }
 
-@media only screen and (max-width: 700px) {
+a.navbar-brand{
+    margin: 1rem 2rem 1rem 1rem !important;
+    font-weight: 400;
+    font-size: x-large;
+}
+
+@media (max-width: 700px) {
     .web-player {
         min-width: 100%;
         max-height: 72px;
@@ -111,13 +117,16 @@ hr {
     color: var(--border-color)
 }
 
+.dropdown-toggle {
+    padding: 0 1px 10px 1px;
+}
 
-a.dropdown-toggle:hover {
+.dropdown-toggle:hover {
     text-shadow: 0 0 15px var(--border-color);
     color: #fff !important;
 }
 
-a.dropdown-toggle::before{
+.dropdown-toggle::before{
     content: '|';
     margin-right: 1rem; 
     margin-left: 0;
@@ -125,7 +134,7 @@ a.dropdown-toggle::before{
     text-shadow: none !important;
 }
 
-a.dropdown-toggle::after:hover{
+.dropdown-toggle::after:hover{
     color: var(--border-color);
 }
 

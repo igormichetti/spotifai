@@ -42,10 +42,10 @@
         <div class="d-none d-lg-block" hx-get="{{ url_for('currently_playing')}}" hx-trigger="load"></div>
           <li class="dropdown ms-auto">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                {{display_name}}
+                {{ display_name }}
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="/current_user">Me</a></li>
+                <li><a class="dropdown-item" href="/current_user">{{display_name}}</a></li>
                 <a class="dropdown-item" href="/playlists">Playlist</a>
                 <hr class="dropdown-divider">
                 <a class="dropdown-item" href="/sign_out">Logout</a>
