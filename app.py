@@ -83,11 +83,10 @@ def index():
     
     sp = Spotify(auth_manager=auth_manager)
 
-    display_name = session.get('display_name', None)
-    profile_image = sp.me()['images'][0]["url"]
+    display_name = sp.me()['display_name']
 
 
-    return render_template('home.html', display_name=display_name, profile_image=profile_image)
+    return render_template('home.html', display_name=display_name)
 
 @app.route('/callback')
 def callback():
@@ -99,8 +98,6 @@ def callback():
         
         spotify = Spotify(auth_manager=auth_manager)
         user_id = spotify.me()['id']
-        session['display_name'] = spotify.me()['display_name']
-        session['profile_image'] = spotify.me()['images'][0]['url']
         
         user = User.query.filter_by(user_id=user_id).first()
         if user:
@@ -115,9 +112,7 @@ def callback():
 
 @app.route('/sign_out/')
 def sign_out():
-    print(session)
     session.pop("token_info", None)
-    session.pop("display_name")
     return redirect('/')
 
 @app.route('/tools/')
@@ -130,13 +125,30 @@ def user_top_tracks():
 
     sp = Spotify(auth_manager=auth_manager)
     tracks = sp.current_user_top_tracks(limit=20, time_range='short_term')
-    tracks_info= [(track['name'], track['artists'][0]['name']) for track in tracks['items']]
+    track_names, track_urls, track_artists, track_artist_urls, artists_images = [[] for _ in range(5)]
+
+    for track in tracks['items']:
+        track_names.append(track['name'])
+        track_urls.append(track['external_urls']['spotify'])
+        artists = [artist['name'] for artist in track['artists']]
+        track_artists.append(artists)
+        artist_urls = [artist['external_urls']['spotify'] for artist in track['artists']]
+        track_artist_urls.append(artist_urls[0])
+        
+        artist_query = sp.search(q='artist:' + artists[0], type='artist')
+        artist_query_items = artist_query['artists']['items']
+        if len(artist_query_items) > 0:
+            artists_images.append(artist_query_items[0]['images'][-1]['url'])
+
     
-    display_name = session.get('display_name', None)
+    tracks_info = zip(track_names, track_urls, track_artists, track_artist_urls, artists_images)
+    display_name = sp.me()['display_name']
+    if not display_name:
+        display_name = sp.me()['id']
 
-
-
-    return render_template('tools.html', tracks_info=tracks_info, display_name=display_name)
+    return render_template('tools.html',
+                            tracks_info=tracks_info,
+                              display_name=display_name)
 
 @app.route('/create_user_top_tracks_playlist/')
 def create_monthly_playlist():

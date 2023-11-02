@@ -39,7 +39,7 @@
             </li>
           </ul>
         </div>
-        <div class="d-none d-lg-block" hx-get="{{ url_for('currently_playing')}}" hx-trigger="load"></div>
+        <div class="d-none d-lg-block" hx-get="{{ url_for('currently_playing')}}" hx-trigger="load, 2s"></div>
           <li class="dropdown ms-auto">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ display_name }}
