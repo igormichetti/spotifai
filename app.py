@@ -9,11 +9,11 @@ from dotenv import load_dotenv, find_dotenv
 load_dotenv()
 
 #DIRECT WAY
-#os.environ['SPOTIPY_CLIENT_ID'] = 'client id here'
-#os.environ['SPOTIPY_CLIENT_SECRET'] = 'client secret here'
+os.environ['SPOTIPY_CLIENT_ID'] = 'fee9b1ac2af1493eb108016b41d5a98c'
+os.environ['SPOTIPY_CLIENT_SECRET'] = '71ac43e1c56a49328a3eb86f2da340fb'
 os.environ['SPOTIPY_REDIRECT_URI'] = 'http://127.0.0.1:5000/callback'
-#os.environ['FLASK_ENV'] = 'development'
-#os.environ['FLASK_ENV'] = 'your database uri here' ex: mysql://username:password@localhost/tablename
+os.environ['FLASK_ENV'] = 'development'
+os.environ['FLASK_ENV'] = 'mysql://michetti:08245120901@localhost/spotifai'
 
 
 
@@ -24,8 +24,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.permanent_session_lifetime = datetime.timedelta(minutes=99)
 
 db = SQLAlchemy(app)
-
-argobo = 123
 
 class User(db.Model):
     __tablename__ = 'User'
@@ -163,7 +161,7 @@ def create_monthly_playlist():
     desc = f"This user's most played tracks of {month_year}. Created by Spotifai."
 
     sp = Spotify(auth_manager=auth_manager)
-    tracks = sp.current_user_top_tracks(limit=20, time_range='short_term')
+    tracks = sp.current_user_top_tracks(limit=30, time_range='short_term')
     user_id = sp.me()['id']
     
     playlist = sp.user_playlist_create(user=user_id,

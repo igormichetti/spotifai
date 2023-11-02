@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="tracklist">
+  <div class="card-header">
+    Your Monthly Top Tracks
+  </div>
+  <div class="card-body">
+    <ol class="list-group list-group-numbered">
+      {% for track, track_url, artists, artist_url, a_image in tracks_info %}
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+              <div class="fw-bold">
+                <a class="track-name-playlist" href="{{ track_url }}">
+                  {{ track }}
+                </a>
+              </div>
+              <a class="track-artists-playlist" href= "{{ artist_url }}">
+                {{ " ".join(artists) }}
+              </a>
+          </div>
+          <div class="play-button">
+            <a href="#" class="btn btn-primary">Play</a>
+          </div>
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+  <a href="/create_user_top_tracks_playlist" class="btn btn-primary" id="add-playlist">
+    Add to Spotify
+  </a>
+</div>
+
+{% endblock %}
