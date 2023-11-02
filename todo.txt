@@ -1,0 +1,6 @@
+create blueprints
+create table user alter tale current user to user ouath
+useer hsare snippets in convo 
+keep chats with history
+create table chats
+playlist global hub
